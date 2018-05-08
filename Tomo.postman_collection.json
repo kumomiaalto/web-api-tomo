@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "61c3f5a9-dc7b-4f2d-864b-37d09854b7fd",
+		"name": "Tomo",
+		"description": "All Tomo web APIs. Hosted on google app engine",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Ticket Update",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ticket_number\":\"A8H4JK\",\n\t\"first_name\":\"John\",\n\t\"last_name\":\"Doe\",\n\t\"flight_number\":\"AN-456\",\n\t\"airline\":\"ANA\",\n\t\"source\":\"NYC\",\n\t\"destination\":\"HND\",\n\t\"boarding_time\":\"2017-05-09T09:00:00-05:00\",\n\t\"departure_time\":\"2017-05-09T09:30:00-05:00\",\n\t\"terminal\":\"2\",\n\t\"gate\":\"A32\",\n\t\"security_time\":15,\n\t\"immigration_time\":15,\n\t\"gate_location\":\"6\"\n}"
+				},
+				"url": {
+					"raw": "https://tomo-aalto-web.appspot.com/ticket/update",
+					"protocol": "https",
+					"host": [
+						"tomo-aalto-web",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"ticket",
+						"update"
+					]
+				},
+				"description": "Updates the ticket, use the same ticket number always, if you want to change the ticket number, call reset API and then change ticket number and post data."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Ticket",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://tomo-aalto-web.appspot.com/ticket/show",
+					"protocol": "https",
+					"host": [
+						"tomo-aalto-web",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"ticket",
+						"show"
+					]
+				},
+				"description": "Gets the ticket with ticket number posted on Ticket Update"
+			},
+			"response": []
+		},
+		{
+			"name": "PoiBeacon Update",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"mac\":\"65:7a:87:89:90\",\"poi\":\"toilet\"}"
+				},
+				"url": {
+					"raw": "https://tomo-aalto-web.appspot.com/poibeacon/update",
+					"protocol": "https",
+					"host": [
+						"tomo-aalto-web",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"poibeacon",
+						"update"
+					]
+				},
+				"description": "Add poi beacons for toilets etc, primary key is mac, if you want to update a beacon, keep the same mac but change poi string"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Poi Beacons",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://tomo-aalto-web.appspot.com/poibeacon/show",
+					"protocol": "https",
+					"host": [
+						"tomo-aalto-web",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"poibeacon",
+						"show"
+					]
+				},
+				"description": "Gets all beacons registered"
+			},
+			"response": []
+		},
+		{
+			"name": "Reset Ticket",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://tomo-aalto-web.appspot.com/reset/ticket",
+					"protocol": "https",
+					"host": [
+						"tomo-aalto-web",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"reset",
+						"ticket"
+					]
+				},
+				"description": "Deletes ticket data from system"
+			},
+			"response": []
+		},
+		{
+			"name": "Reset Poi Beacons",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://tomo-aalto-web.appspot.com/reset/poibeacons",
+					"protocol": "https",
+					"host": [
+						"tomo-aalto-web",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"reset",
+						"poibeacons"
+					]
+				},
+				"description": "Removes all data for beacons"
+			},
+			"response": []
+		}
+	]
+}
