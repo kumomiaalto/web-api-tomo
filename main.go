@@ -20,6 +20,7 @@ type AirlineTicket struct {
 	FlightNumber        string    `json:"flight_number"`
 	TicketNumber        string    `json:"ticket_number"`
 	Seat                string    `json:"seat"`
+	TicketClass         string    `json:"ticket_class"`
 	BoardingTime        time.Time `json:"boarding_time"`
 	DepartureTime       time.Time `json:"departure_time"`
 	Terminal            string    `json:"terminal"`
