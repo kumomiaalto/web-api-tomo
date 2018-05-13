@@ -42,9 +42,10 @@ type PassengerLocation struct {
 	ReportTime   time.Time `json:"report_time"`
 }
 
-type PoiBeacon struct {
-	Mac string `json:"mac"`
-	Poi string `json:"poi"`
+type Beacon struct {
+	Mac  string `json:"mac"`
+	Icon string `json:"icon"`
+	Text string `json:"text"`
 }
 
 func getTicket(w http.ResponseWriter, r *http.Request) {
@@ -167,18 +168,18 @@ func resetTicket(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func resetPoiBeacon(w http.ResponseWriter, r *http.Request) {
+func resetBeacons(w http.ResponseWriter, r *http.Request) {
 	ctx := appengine.NewContext(r)
 
-	var poiBeacons []PoiBeacon
-	q := datastore.NewQuery("PoiBeacon")
-	if _, err := q.GetAll(ctx, &poiBeacons); err != nil {
+	var beacons []Beacon
+	q := datastore.NewQuery("Beacon")
+	if _, err := q.GetAll(ctx, &beacons); err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 
-	for _, poiBeacon := range poiBeacons {
-		key := datastore.NewKey(ctx, "PoiBeacon", poiBeacon.Mac, 0, nil)
+	for _, beacon := range beacons {
+		key := datastore.NewKey(ctx, "Beacon", beacon.Mac, 0, nil)
 		err := datastore.Delete(ctx, key)
 		if err != nil {
 			panic(err)
@@ -186,22 +187,22 @@ func resetPoiBeacon(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func postPoiBeacon(w http.ResponseWriter, r *http.Request) {
+func postBeacon(w http.ResponseWriter, r *http.Request) {
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		panic(err)
 	}
 
-	var poiBeacon PoiBeacon
-	err = json.Unmarshal(body, &poiBeacon)
+	var beacon Beacon
+	err = json.Unmarshal(body, &beacon)
 	if err != nil {
 		panic(err)
 	}
 
 	ctx := appengine.NewContext(r)
-	key := datastore.NewKey(ctx, "PoiBeacon", poiBeacon.Mac, 0, nil)
+	key := datastore.NewKey(ctx, "Beacon", beacon.Mac, 0, nil)
 
-	if _, err := datastore.Put(ctx, key, &poiBeacon); err != nil {
+	if _, err := datastore.Put(ctx, key, &beacon); err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		fmt.Println(w, "Something has gone wrong!")
 		return
@@ -210,17 +211,17 @@ func postPoiBeacon(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(w, "Updated successfully!")
 }
 
-func getAllPoiBeacons(w http.ResponseWriter, r *http.Request) {
+func getAllBeacons(w http.ResponseWriter, r *http.Request) {
 	ctx := appengine.NewContext(r)
 
-	var poiBeacons []PoiBeacon
-	q := datastore.NewQuery("PoiBeacon")
-	if _, err := q.GetAll(ctx, &poiBeacons); err != nil {
+	var beacons []Beacon
+	q := datastore.NewQuery("Beacon")
+	if _, err := q.GetAll(ctx, &beacons); err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 
-	jsonBody, err := json.Marshal(poiBeacons)
+	jsonBody, err := json.Marshal(beacons)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
@@ -234,10 +235,10 @@ func main() {
 	http.HandleFunc("/ticket/update", postTicket)
 	http.HandleFunc("/location/update", postLocation)
 	http.HandleFunc("/locations/show", getLocations)
-	http.HandleFunc("/poibeacon/show", getAllPoiBeacons)
-	http.HandleFunc("/poibeacon/update", postPoiBeacon)
+	http.HandleFunc("/beacons/show", getAllBeacons)
+	http.HandleFunc("/beacon/update", postBeacon)
 	http.HandleFunc("/reset/ticket", resetTicket)
-	http.HandleFunc("/reset/poibeacons", resetPoiBeacon)
+	http.HandleFunc("/reset/beacons", resetBeacons)
 
 	appengine.Main()
 }
