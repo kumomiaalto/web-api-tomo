@@ -18,7 +18,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"ticket_number\":\"A8H4JK\",\n\t\"first_name\":\"John\",\n\t\"last_name\":\"Doe\",\n\t\"flight_number\":\"AN-456\",\n\t\"airline\":\"ANA\",\n\t\"source\":\"NYC\",\n\t\"destination\":\"HND\",\n\t\"boarding_time\":\"2017-05-09T09:00:00-05:00\",\n\t\"departure_time\":\"2017-05-09T09:30:00-05:00\",\n\t\"terminal\":\"2\",\n\t\"gate\":\"A32\",\n\t\"security_time\":15,\n\t\"immigration_time\":15,\n\t\"gate_location\":\"6\"\n}"
+					"raw": "{\n\t\"ticket_number\":\"A8H4JK\",\n\t\"first_name\":\"Suzuki\",\n\t\"last_name\":\"Atsushi\",\n\t\"flight_number\":\"AN-456\",\n\t\"airline\":\"ANA\",\n\t\"source\":\"NYC\",\n\t\"destination\":\"HND\",\n\t\"boarding_time\":\"2017-05-09T09:00:00-05:00\",\n\t\"departure_time\":\"2017-05-09T09:30:00-05:00\",\n\t\"terminal\":\"2\",\n\t\"gate\":\"A32\",\n\t\"security_time\":15,\n\t\"immigration_time\":15,\n\t\"gate_location\":\"6\",\n\t\"seat\":\"28D\",\n\t\"ticket_class\":\"economy\"\n}"
 				},
 				"url": {
 					"raw": "https://tomo-aalto-web.appspot.com/ticket/update",
@@ -61,7 +61,7 @@
 			"response": []
 		},
 		{
-			"name": "PoiBeacon Update",
+			"name": "Beacon Update",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -72,10 +72,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"mac\":\"65:7a:87:89:90\",\"poi\":\"toilet\"}"
+					"raw": "{\"mac\":\"65:7a:87:89:91\", \"icon\": \"toilet\", \"text\": \"Toilet\"}"
 				},
 				"url": {
-					"raw": "https://tomo-aalto-web.appspot.com/poibeacon/update",
+					"raw": "https://tomo-aalto-web.appspot.com/beacon/update",
 					"protocol": "https",
 					"host": [
 						"tomo-aalto-web",
@@ -83,22 +83,22 @@
 						"com"
 					],
 					"path": [
-						"poibeacon",
+						"beacon",
 						"update"
 					]
 				},
-				"description": "Add poi beacons for toilets etc, primary key is mac, if you want to update a beacon, keep the same mac but change poi string"
+				"description": "Add beacons for toilets etc, primary key is mac, if you want to update a beacon, keep the same mac but change other data"
 			},
 			"response": []
 		},
 		{
-			"name": "Get All Poi Beacons",
+			"name": "Get All Beacons",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "https://tomo-aalto-web.appspot.com/poibeacon/show",
+					"raw": "https://tomo-aalto-web.appspot.com/beacons/show",
 					"protocol": "https",
 					"host": [
 						"tomo-aalto-web",
@@ -106,7 +106,7 @@
 						"com"
 					],
 					"path": [
-						"poibeacon",
+						"beacons",
 						"show"
 					]
 				},
@@ -138,13 +138,13 @@
 			"response": []
 		},
 		{
-			"name": "Reset Poi Beacons",
+			"name": "Reset Beacons",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "https://tomo-aalto-web.appspot.com/reset/poibeacons",
+					"raw": "https://tomo-aalto-web.appspot.com/reset/beacons",
 					"protocol": "https",
 					"host": [
 						"tomo-aalto-web",
@@ -153,7 +153,7 @@
 					],
 					"path": [
 						"reset",
-						"poibeacons"
+						"beacons"
 					]
 				},
 				"description": "Removes all data for beacons"
