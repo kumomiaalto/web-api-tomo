@@ -72,7 +72,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"mac\":\"65:7a:87:89:91\", \"icon\": \"toilet\", \"text\": \"Toilet\"}"
+					"raw": "{\"mac\":\"65:7a:87:89:91\", \"icon\": \"toilet\", \"text\": \"Toilet\", \"beacon_type\": \"notification\"}"
 				},
 				"url": {
 					"raw": "https://tomo-aalto-web.appspot.com/beacon/update",
