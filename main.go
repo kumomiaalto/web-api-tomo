@@ -43,9 +43,10 @@ type PassengerLocation struct {
 }
 
 type Beacon struct {
-	Mac  string `json:"mac"`
-	Icon string `json:"icon"`
-	Text string `json:"text"`
+	Mac        string `json:"mac"`
+	Icon       string `json:"icon"`
+	Text       string `json:"text"`
+	BeaconType string `json:"beacon_type"`
 }
 
 func getTicket(w http.ResponseWriter, r *http.Request) {
