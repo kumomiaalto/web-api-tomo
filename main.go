@@ -43,10 +43,14 @@ type PassengerLocation struct {
 }
 
 type Beacon struct {
-	Mac        string `json:"mac"`
+	Name       string `json:"name"`
 	Icon       string `json:"icon"`
 	Text       string `json:"text"`
 	BeaconType string `json:"beacon_type"`
+	Latitude   string `json:"latitude"`
+	Longitude  string `json:"longitude"`
+	NextBeacon string `json:"next_beacon"`
+	TimeToGate string `json:"time_to_gate"`
 }
 
 func getTicket(w http.ResponseWriter, r *http.Request) {
@@ -180,7 +184,7 @@ func resetBeacons(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for _, beacon := range beacons {
-		key := datastore.NewKey(ctx, "Beacon", beacon.Mac, 0, nil)
+		key := datastore.NewKey(ctx, "Beacon", beacon.Name, 0, nil)
 		err := datastore.Delete(ctx, key)
 		if err != nil {
 			panic(err)
@@ -201,7 +205,7 @@ func postBeacon(w http.ResponseWriter, r *http.Request) {
 	}
 
 	ctx := appengine.NewContext(r)
-	key := datastore.NewKey(ctx, "Beacon", beacon.Mac, 0, nil)
+	key := datastore.NewKey(ctx, "Beacon", beacon.Name, 0, nil)
 
 	if _, err := datastore.Put(ctx, key, &beacon); err != nil {
 		w.WriteHeader(http.StatusInternalServerError)

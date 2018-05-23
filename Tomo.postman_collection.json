@@ -61,7 +61,7 @@
 			"response": []
 		},
 		{
-			"name": "Beacon Update",
+			"name": "Beacon Update - Direction Notification",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -72,7 +72,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"mac\":\"65:7a:87:89:91\", \"icon\": \"toilet\", \"text\": \"Toilet\", \"beacon_type\": \"notification\"}"
+					"raw": "{\n\t\"name\":\"Lobby 1\",\n\t\"icon\":\"wrong_path\",\n\t\"text\":\"To lobby\",\n\t\"beacon_type\":\"direction\"\n}"
 				},
 				"url": {
 					"raw": "https://tomo-aalto-web.appspot.com/beacon/update",
@@ -87,7 +87,7 @@
 						"update"
 					]
 				},
-				"description": "Add beacons for toilets etc, primary key is mac, if you want to update a beacon, keep the same mac but change other data"
+				"description": "Add beacons for direction notification, primary key is name"
 			},
 			"response": []
 		},
@@ -157,6 +157,68 @@
 					]
 				},
 				"description": "Removes all data for beacons"
+			},
+			"response": []
+		},
+		{
+			"name": "Beacon Update - Navigation",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Staircase 1\",\n\t\"text\":\"To lobby\",\n\t\"beacon_type\":\"navigation\",\n\t\"latitude\":\"78.888272782\",\n\t\"longitude\":\"12.98392832893\",\n\t\"time_to_gate\":\"15\",\n\t\"next_beacon\":\"Staircase 2\"\n}"
+				},
+				"url": {
+					"raw": "https://tomo-aalto-web.appspot.com/beacon/update",
+					"protocol": "https",
+					"host": [
+						"tomo-aalto-web",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"beacon",
+						"update"
+					]
+				},
+				"description": "Add beacons for navigation - primary key is beacon namee"
+			},
+			"response": []
+		},
+		{
+			"name": "Beacon Update - Notification",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Toilet 1\",\n\t\"icon\":\"wrong_path\",\n\t\"text\":\"To lobby\",\n\t\"beacon_type\":\"notification\"\n}"
+				},
+				"url": {
+					"raw": "https://tomo-aalto-web.appspot.com/beacon/update",
+					"protocol": "https",
+					"host": [
+						"tomo-aalto-web",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"beacon",
+						"update"
+					]
+				},
+				"description": "Add beacons for location notifications, primary key is name"
 			},
 			"response": []
 		}
