@@ -223,7 +223,7 @@
 			"response": []
 		},
 		{
-			"name": "Update Beacon Routes",
+			"name": "Beacon Route Update",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -250,7 +250,7 @@
 						"update"
 					]
 				},
-				"description": "Beacon routes, name needs to be unique, and a list of beacon names. Need to always have a 'default' route to follow"
+				"description": "Beacon routes, name needs to be unique, and a list of beacon names. Need to always have a 'default' route to follow in the routes DB"
 			},
 			"response": []
 		},
@@ -306,6 +306,37 @@
 					]
 				},
 				"description": "Deletes all beacon routes"
+			},
+			"response": []
+		},
+		{
+			"name": "Beacon Update - Gate Change",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Staircase 1\",\n\t\"route\":\"new_route\",\n\t\"text\": \"gate changed\",\n\t\"icon\":\"icon.png\",\n\t\"beacon_type\":\"gate_change\",\n\t\"latitude\":\"78.888272782\",\n\t\"longitude\":\"12.98392832893\",\n\t\"time_to_gate\":\"15\"\n}"
+				},
+				"url": {
+					"raw": "https://tomo-aalto-web.appspot.com/beacon/update",
+					"protocol": "https",
+					"host": [
+						"tomo-aalto-web",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"beacon",
+						"update"
+					]
+				},
+				"description": "Add beacons for gate change, route needs to be specified for a gate change beacon"
 			},
 			"response": []
 		}
