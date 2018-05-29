@@ -49,6 +49,7 @@ type Beacon struct {
 	BeaconType    string `json:"beacon_type"`
 	Latitude      string `json:"latitude"`
 	Longitude     string `json:"longitude"`
+	NextBeacon    string `json:"next_beacon"`
 	TimeToGate    string `json:"time_to_gate"`
 	BoardingTime  string `json:"boarding_time"`
 	DepartureTime string `json:"departure_time"`
