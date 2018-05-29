@@ -57,8 +57,8 @@ type Beacon struct {
 }
 
 type BeaconRoute struct {
-	Beacons []interface{} `json:"beacons"`
-	Name    string        `json:"name"`
+	Beacons []string `json:"beacons"`
+	Name    string   `json:"name"`
 }
 
 func getTicket(w http.ResponseWriter, r *http.Request) {
