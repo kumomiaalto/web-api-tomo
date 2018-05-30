@@ -61,7 +61,7 @@
 			"response": []
 		},
 		{
-			"name": "Beacon Update - Direction Notification",
+			"name": "Beacon Update - Big / Small Notification",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -72,7 +72,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\":\"Lobby 1\",\n\t\"icon\":\"wrong_path\",\n\t\"text\":\"To lobby\",\n\t\"beacon_type\":\"direction\"\n}"
+					"raw": "{\n\t\"name\":\"Lobby 1\",\n\t\"icon\":\"wrong_path\",\n\t\"text\":\"To lobby\",\n\t\"beacon_type\":\"big / small notificaion\"\n}"
 				},
 				"url": {
 					"raw": "https://tomo-aalto-web.appspot.com/beacon/update",
@@ -321,7 +321,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\":\"Staircase 1\",\n\t\"route\":\"new_route\",\n\t\"text\": \"gate changed\",\n\t\"icon\":\"icon.png\",\n\t\"beacon_type\":\"gate_change\",\n\t\"latitude\":\"78.888272782\",\n\t\"longitude\":\"12.98392832893\",\n\t\"time_to_gate\":\"15\"\n}"
+					"raw": "{\n\t\"name\":\"Staircase 1\",\n\t\"beacon_type\":\"gate_change\",\n\t\"gate\":\"A33\"\n}"
 				},
 				"url": {
 					"raw": "https://tomo-aalto-web.appspot.com/beacon/update",

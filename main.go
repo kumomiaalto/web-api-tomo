@@ -54,6 +54,7 @@ type Beacon struct {
 	BoardingTime  string `json:"boarding_time"`
 	DepartureTime string `json:"departure_time"`
 	Route         string `json:"route"`
+	Gate          string `json:"gate"`
 }
 
 type BeaconRoute struct {
